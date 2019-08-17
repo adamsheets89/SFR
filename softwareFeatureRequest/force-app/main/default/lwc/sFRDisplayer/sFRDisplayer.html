@@ -1,0 +1,7 @@
+<template>
+  <div>
+    <template for:each={resources.data} for:item="resource">
+      <p key={resource.Id}>{resource.Title__c}</p>
+    </template>
+  </div>
+</template>
