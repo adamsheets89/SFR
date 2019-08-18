@@ -3,8 +3,8 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/sFRDisplayer": [
-                "sFRDisplayer/sFRDisplayer.js"
+            "c/listViewDisplayer": [
+                "listViewDisplayer/listViewDisplayer.js"
             ]
         }
     },

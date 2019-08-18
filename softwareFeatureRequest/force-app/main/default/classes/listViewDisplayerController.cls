@@ -1,5 +1,5 @@
-public with sharing class SFRDIsplayer {
-    public SFRDIsplayer() {
+public with sharing class listViewDisplayerController {
+    public listViewDisplayerController() {
 
     }
 
