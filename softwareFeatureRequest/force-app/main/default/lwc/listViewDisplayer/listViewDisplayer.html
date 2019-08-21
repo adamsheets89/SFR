@@ -1,7 +1,14 @@
 <template>
-  <div>
-    <template for:each={resources.data} for:item="resource">
-      <p key={resource.Id}>{resource.Title__c}</p>
-    </template>
-  </div>
+	<lightning-card title="My Feature Requests" icon-name="standard:case">
+		<div class="slds-m-around_medium">
+			<lightning-datatable key-field="id" data={myRequests} columns={columns}>
+			</lightning-datatable>
+		</div>
+	</lightning-card>
+	<lightning-card title="Available Feature Requests" icon-name="standard:case">
+		<div class="slds-m-around_medium">
+			<lightning-datatable key-field="id" data={queueRequests} columns={columns}>
+			</lightning-datatable>
+		</div>
+	</lightning-card>
 </template>

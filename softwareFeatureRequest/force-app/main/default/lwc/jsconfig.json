@@ -5,6 +5,9 @@
         "paths": {
             "c/listViewDisplayer": [
                 "listViewDisplayer/listViewDisplayer.js"
+            ],
+            "c/softwareFeatureRequestCreator": [
+                "softwareFeatureRequestCreator/softwareFeatureRequestCreator.js"
             ]
         }
     },
