@@ -1,6 +1,6 @@
 import { LightningElement, track, wire } from "lwc";
 import getData from "@salesforce/apex/listViewDisplayerController.getData";
-import { subscribe, onError } from 'lightning/empApi';
+import { subscribe } from 'lightning/empApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class ListViewDisplayer extends LightningElement {
@@ -37,6 +37,11 @@ export default class ListViewDisplayer extends LightningElement {
 			this.filterRequests();
 		} else if (error) {
 			this.error = error;
+			this.showToast(
+				'Error',
+				this.error,
+				'error'
+			);
 		}
 	}
 
@@ -68,7 +73,11 @@ export default class ListViewDisplayer extends LightningElement {
 			for (let i = 0; i < updatedRequests.length; i++) {
 				if (updatedRequests[i].Id === recordId) {
 					if (ownerId !== updatedRequests[i].OwnerId && ownerId !== this.owners.queue && ownerId !== this.owners.user) {
-						this.showToast('Software Feature Request "' + data.sobject.Title__c + '" has been assigned to another user.');
+						this.showToast(
+							'Record Update',
+							'Software Feature Request "' + data.sobject.Title__c + '" has been assigned to another user.',
+							'success'
+						);
 					}
 					updatedRequests.splice(i, 1);
 				}
@@ -79,11 +88,11 @@ export default class ListViewDisplayer extends LightningElement {
 		this.filterRequests();
 	}
 
-	showToast(message) {
+	showToast(title, message, status) {
 		const evt = new ShowToastEvent({
-			title: 'Record Updated',
+			title: title,
 			message: message,
-			variant: 'success',
+			variant: status,
 		});
 		this.dispatchEvent(evt);
 	}
