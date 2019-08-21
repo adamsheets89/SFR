@@ -8,10 +8,10 @@ export default class ListViewDisplayer extends LightningElement {
 	columns = [
 		{ label: "Title", fieldName: "Title__c" },
 		{ label: "Description", fieldName: "Description__c" },
-		{ label: "Owner", fieldName: "OwnerId", editable: true }
+		{ label: "Owner", fieldName: "OwnerId" }
 	];
 
-	@track requests;
+	requests;
 	@track myRequests;
 	@track queueRequests;
 	@track error;
@@ -22,9 +22,8 @@ export default class ListViewDisplayer extends LightningElement {
 
 	connectedCallback() {
 		subscribe(this.channelName, -1, (response) => {
-			console.log(JSON.stringify(response));
 			this.newRequest = response.data.sobject;
-			this.handleSubscriptionEvent(response.data);
+			this.handleSubscriptionResponse(response.data);
 		})
 	}
 
@@ -43,10 +42,9 @@ export default class ListViewDisplayer extends LightningElement {
 		let myRequests = [];
 		let queueRequests = [];
 		this.requests.forEach(request => {
-			console.log('request : ', JSON.parse(JSON.stringify(request)));
 			if (request.OwnerId === this.owners.queue) {
 				queueRequests.push(request);
-			} else {
+			} else if (request.OwnerId === this.owners.user) {
 				myRequests.push(request);
 			}
 		});
@@ -54,11 +52,10 @@ export default class ListViewDisplayer extends LightningElement {
 		this.queueRequests = queueRequests;
 	}
 
-	handleSubscriptionEvent(data) {
+	handleSubscriptionResponse(data) {
 		const type = data.event.type;
 		const recordId = data.sobject.Id;
 		const ownerId = data.sobject.OwnerId;
-		const title = data.sobject.Title__c;
 		let updatedRequests = [...this.requests];
 
 		if (type === 'deleted') {
@@ -66,12 +63,14 @@ export default class ListViewDisplayer extends LightningElement {
 		} else if (type === 'created') {
 			updatedRequests.push(this.newRequest);
 		} else if (type === 'updated') {
-			updatedRequests.forEach((request) => {
-				if (request.Id === recordId && request.OwnerId !== ownerId) {
-					this.showToast('Software Feature Request "' + title + '" has been reassigned to another user.');
+			for (let i = 0; i < updatedRequests.length; i++) {
+				if (updatedRequests[i].Id === recordId) {
+					if (ownerId !== updatedRequests[i].OwnerId && ownerId !== this.owners.queue && ownerId !== this.owners.user) {
+						this.showToast('Software Feature Request "' + data.sobject.Title__c + '" has been assigned to another user.');
+					}
+					updatedRequests.splice(i, 1);
 				}
-			})
-			updatedRequests = updatedRequests.filter(request => request.Id !== recordId);
+			}
 			updatedRequests.push(this.newRequest);
 		}
 		this.requests = updatedRequests;
