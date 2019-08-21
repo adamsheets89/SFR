@@ -154,7 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <label>Software Feature Request</label>
     <nameField>
-        <displayFormat>A-{0000}</displayFormat>
+        <displayFormat>SFR-{0000}</displayFormat>
         <label>Software Feature Request Name</label>
         <type>AutoNumber</type>
     </nameField>

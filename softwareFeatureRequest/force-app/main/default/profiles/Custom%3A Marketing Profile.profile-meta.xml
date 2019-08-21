@@ -6,7 +6,19 @@
         <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>contentDocumentLinkTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>listViewDisplayerController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>softwareFeatureRequestTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>softwareFeatureRequestTrigger_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
@@ -15,23 +27,20 @@
         <field>Software_Feature_Request__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Software_Feature_Request__c.Related_Files__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Software_Feature_Request__c-Software Feature Request Layout</layout>
     </layoutAssignments>
-    <tabVisibilities>
-        <tab>Available_Feature_Requests</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
     <tabVisibilities>
         <tab>Home</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Software_Feature_Request__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Software_Feature_Requests</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>

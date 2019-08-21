@@ -14,7 +14,7 @@
     </flexiPageRegions>
     <masterLabel>My Feature Requests</masterLabel>
     <template>
-        <name>flexipage:appHomeTemplateHeaderTwoColumnsLeftSidebar</name>
+        <name>flexipage:appHomeTemplateHeaderTwoColumns</name>
     </template>
     <type>AppPage</type>
 </FlexiPage>

@@ -8,7 +8,9 @@ export default class ListViewDisplayer extends LightningElement {
 	columns = [
 		{ label: "Title", fieldName: "Title__c" },
 		{ label: "Description", fieldName: "Description__c" },
-		{ label: "Owner", fieldName: "OwnerId" }
+		{ label: "Status", fieldName: "Status__c" },
+		{ label: "Software Product", fieldName: "Software_Product__c" },
+		{ label: "Related Files", fieldName: "Related_Files__c" }
 	];
 
 	requests;

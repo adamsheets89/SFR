@@ -1,13 +1,13 @@
 <template>
-	<lightning-card title="My Feature Requests" icon-name="standard:case">
-		<div class="slds-m-around_medium">
-			<lightning-datatable key-field="id" data={myRequests} columns={columns}>
+	<lightning-card title="My Feature Requests" class="slds-m-around--medium" icon-name="standard:case">
+		<div>
+			<lightning-datatable key-field="id" data={myRequests} hide-checkbox-column=true columns={columns}>
 			</lightning-datatable>
 		</div>
 	</lightning-card>
-	<lightning-card title="Available Feature Requests" icon-name="standard:case">
-		<div class="slds-m-around_medium">
-			<lightning-datatable key-field="id" data={queueRequests} columns={columns}>
+	<lightning-card title="Available Feature Requests" class="slds-m-around--medium" icon-name="standard:case">
+		<div>
+			<lightning-datatable key-field="id" data={queueRequests} hide-checkbox-column=true columns={columns}>
 			</lightning-datatable>
 		</div>
 	</lightning-card>

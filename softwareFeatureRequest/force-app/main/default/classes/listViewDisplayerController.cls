@@ -6,7 +6,7 @@ public with sharing class listViewDisplayerController {
             'queue' => [SELECT Id FROM Group WHERE Type='Queue' AND Name='Software Feature Request Queue'].Id
         };
 
-        List<Software_Feature_Request__c> requests = [SELECT Id, Title__c, Description__c, Name, OwnerId, Owner.Name 
+        List<Software_Feature_Request__c> requests = [SELECT Id, Title__c, Description__c, Name, OwnerId, Owner.Name, Status__c, Software_Product__c, Related_Files__c 
                                                       FROM Software_Feature_Request__c 
                                                       WHERE OwnerId IN: owners.values()];
 
